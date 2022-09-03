@@ -1,3 +1,5 @@
+Check out the Infinite Heaven and The Ultimate Phantom Pain compatability branches too.
+
 # Nuke Camera Animations and Effects
 This is a mod for Metal Gear Solid: The Phantom Pain, [Snakebite](https://www.nexusmods.com/metalgearsolidvtpp/mods/106) is required to install. Check the [Nexus](https://www.nexusmods.com/metalgearsolidvtpp/mods/1575) page for more info.
 
