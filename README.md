@@ -9,16 +9,16 @@ In total, 98 camera animations, 3 visual effects and 1 sound effect have been nu
 <details> 
   <summary> General nuke list </summary>
   
-- Camera effects like slowmotion, blur, noise during the animations below.
-- Camera sound effect during animations below.
-- All CQC Camera animations - combos, disarm, counterattacks, throws, etc.
-- Curing wounds camera animations.
-- Horse camera animations - mounting (seriously wtf), placing on back etc.
-- Walker camera animations - mounting, picking up, cqc etc.
-- Vehicle camera animations - enter/exit, placing people, enter as passenger etc.
-- Entering/exiting objects camera animations - Toilets, trashbox, lockers, showers, placing people in them etc.
-- Cliffclimbing camera animation - the initial step had a camera animation.
-- Animal attacks camera animations.
+- `Camera effects` blur, noise during the animations below.
+- `Camera sound effect` during animations below.
+- `CQC Camera animations` combos, disarm, counterattacks, throws, etc.
+- `Curing wounds camera animations`
+- `Horse camera animations` mounting (seriously wtf), placing on back etc.
+- `Walker camera animations` mounting, picking up, cqc etc.
+- `Vehicle camera animations` enter/exit, placing people, enter as passenger etc.
+- `Entering/exiting objects camera animations` Toilets, trashbox, lockers, showers, placing people in them etc.
+- `Cliffclimbing camera animation` the initial step had a camera animation.
+- `Animal attacks camera animations`
 </details>
 
 
