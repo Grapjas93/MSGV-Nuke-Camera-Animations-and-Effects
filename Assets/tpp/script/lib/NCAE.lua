@@ -1,49 +1,127 @@
 local this={}
 
+local fallbackNCAESettings={ -- mod default settings to fallback to if there are issues loading the custom file
+	showLogs=false,
+	nuke_cameraEffects=true,
+	nuke_cameraSoundEffect=true,
+
+	nuke_cameraSlowMotion=true,
+	cameraSlowMotionTimeMultiplier=1,
+	cameraSlowMotionSpeedMultiplier=1,
+
+	CqcStandThrowFront=true,
+	CqcStandThrowRight=true,
+	CqcStandThrowBack=true,
+	CqcStandThrowLeft=true,
+	CqcBehindThrowStandFrontLeft=true,
+	CqcBehindThrowStandFrontRight=true,
+	CqcBehindThrowStandBackLeft=true,
+	CqcBehindThrowStandBackRight=true,
+	CqcBehindThrowSquatFrontLeft=true,
+	CqcBehindThrowSquatFrontRight=true,
+	CqcBehindThrowSquatBackLeft=true,
+	CqcBehindThrowSquatBackRight=true,
+	CqcBehindCovetThrowSquatLeft=true,
+	CqcBehindCovetThrowSquatRight=true,
+	CqcSeizeThrowFront=true,
+	CqcSeizeThrowBack=true,
+	CqcLadderFront=true,
+	CqcLadderBack=true,
+	CqcSnatchAssaultLeft=true,
+	CqcSnatchAssaultRight=true,
+	CqcComboFinishBack=true,
+	CounterToKnife=true,
+	CounterToGunStrike=true,
+	CounterToLiquidAttack1=true,
+	CounterToLiquidAttack2=true,
+	CounterToLiquidJumpAttack=true,
+	CounterToLiquidStrike=true,
+	CounterToParasiteFogMacheteA=true,
+	CounterToParasiteFogMacheteB=true,
+	CounterToParasiteCommonMachete=true,
+	CounterToParasiteHardMacheteA=true,
+	CounterToParasiteHardMacheteB=true,
+	CounterToParasiteCmoufMacheteA=true,
+	CounterToParasiteCmoufMacheteB=true,
+	CureGunShotWoundBodyLeft=true,
+	CureGunShotWoundBodyRight=true,
+	CureGunShotWoundBodyCrawl=true,
+	CureGunShotWoundBodySupine=true,
+	CureArmDislocationStand=true,
+	CureArmDislocationSquat=true,
+	CureFootDislocation=true,
+	RideOnHorseFrontRight=true,
+	RideOnHorseSideRight=true,
+	RideOnHorseBackRight=true,
+	RideOnHorseFrontLeft=true,
+	RideOnHorseSideLeft=true,
+	RideOnHorseBackLeft=true,
+	RideOnHorseRun=true,
+	PlaceBearersHorseLeft=true,
+	PlaceBearersHorseRight=true,
+	LowerBearersHorseLeft=true,
+	LowerBearersHorseRight=true,
+	RideOnWalkerGear=true,
+	CarryAtWalkerGear=true,
+	WalkerGearCQCStand=true,
+	WalkerGearCQCSquat=true,
+	RideOnVehicle=true,
+	RideOnVehicleFromAssistantDriversSeat=true,
+	PlaceBearersVehicleToAssistantDriversSeat=true,
+	LowerBearersVehicleFromAssistantDriversSeat=true,
+	PlaceBearersVehicleFromLeftSideToRearSeatLeft=true,
+	LowerBearersVehicleFromLeftSideToRearSeatLeft=true,
+	PlaceBearersVehicleFromRightSideToRearSeatRight=true,
+	LowerBearersVehicleFromRightSideToRearSeatRight=true,
+	PlaceBearersVehicleFromBackToRearSeatRight=true,
+	LowerBearersVehicleFromBackToRearSeatRight=true,
+	PlaceBearersVehicleFromBackToRearSeatLeft=true,
+	LowerBearersVehicleFromBackToRearSeatLeft=true,
+	RideOnTruck=true,
+	RideOnTruckFromAssistantDriversSeat=true,
+	PlaceBearersTruckFromLeftSideToRearSeatLeft=true,
+	LowerBearersTruckFromBackToRearSeatRight=true,
+	RideOnArmoredVehicleWest=true,
+	RideOnArmoredVehicleEast=true,
+	RideOnHelicopter=true,
+	GiveCharaterRideHelicopter=true,
+	GiveCharaterRideHelicopterAndRideOn=true,
+	MissionStartOnHeli=true,
+	MissionStartOnHeli2=true,
+	MissionStartOnHeli3=true,
+	GoInsideCBox=true,
+	GoInsideTrashBox=true,
+	GetOutTrashBox=true,
+	CqcDragToTrashBox=true,
+	GoInsideTrashBoxCarryBoth=true,
+	GoInsideTrashBoxCarry=true,
+	GetOutTrashBoxCarry=true,
+	GoInsideToilet=true,
+	GoInsideToiletCarryBoth=true,
+	CloseToiletDoor=true,
+	TakeOutFromToilet=true,
+	GoInsideShower=true,
+	StartCliffClimb=true,
+	WolfAttackStandFront=true,
+	WolfAttackStandBack=true,
+	WolfAttackCrawlFront=true,
+	WolfAttackCrawlBack=true,
+	PazPhantomPainPassPhotos=true,
+	PazPhantomPainPickUpBook=true,
+}
+
 local function LoadExternalModule(moduleName)
 
-	local sucess,module=pcall(require,moduleName)
-	if sucess then
+	local success,module=pcall(require,moduleName)
+	if success then
 		package.loaded[moduleName]=nil
 		_G[moduleName]=module
 		_G.NCAESettings.__loadedUserSettings=true
-		TppUiCommand.AnnounceLogView("NCAE: Reloaded Settings")
+		return success,module
 	else
+		return success,fallbackNCAESettings
 	end
 
-	return sucess,module
 end
 
-function TppMission.IsFOBMission(e) -- rewrite the function from TppMission
-	local e=math.floor(e/1e4)
-	if e==5 then
-		this.SetFOBNCAECameraSettings()
-		return true
-	else
-		this.SetNCAECameraSettings()
-		return false
-	end
-end
-
-function TppDemo.SetPlayerPause() -- rewrite the function from TppDemo
-	TppMission.IsFOBMission(vars.missionCode)
-	mvars.dem_isPlayerPausing=true
-	Player.SetPause()
-end
-
--- Set custom settings for camera animations and effects
-function this.SetNCAECameraSettings()
-	LoadExternalModule"NCAESettings"
-	dofile("/Assets/tpp/script/lib/NCAETppPlayer2InitializeScript.lua")
-	dofile("/Assets/tpp/script/lib/NCAETppPlayer2CallbackScript.lua")
-end
-
--- if FOB, load vanilla effects settings to prevent desyncs to players - custom animations are still enabled
-function this.SetFOBNCAECameraSettings()
-	LoadExternalModule"NCAESettings"
-	TppUiCommand.AnnounceLogView("NCAE: Settings Adjusted For Online Mode")
-	dofile("/Assets/tpp/script/lib/NCAETppPlayer2InitializeScript.lua")
-	dofile("/Assets/tpp/level_asset/chara/player/game_object/TppPlayer2CallbackScript.lua")
-end
-
-return this
+return LoadExternalModule"NCAESettings"
