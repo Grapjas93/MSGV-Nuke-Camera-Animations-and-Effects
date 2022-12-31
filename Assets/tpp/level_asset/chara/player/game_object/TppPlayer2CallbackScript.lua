@@ -145,7 +145,7 @@ TppPlayer2CallbackScript={
     for key, value in pairs(NCAESettings) do
       if (StringId.IsEqual(fileSet, key)) then
 
-        if not value then
+        if (TppMission.IsFOBMission(vars.missionCode) and StringId.IsEqual(fileSet,"CqcSnatchAssaultLeft") or StringId.IsEqual(fileSet,"CqcSnatchAssaultRight")) or not value then
           local startFrame=(unkP2-unkP1)+unkP6
           local recoverPreOrientation=_recoverPreOrientation
           if(((StringId.IsEqual(fileSet,"CureGunShotWoundBodyLeft")or StringId.IsEqual(fileSet,"CureGunShotWoundBodyRight"))or StringId.IsEqual(fileSet,"CureGunShotWoundBodyCrawl"))or StringId.IsEqual(fileSet,"CureGunShotWoundBodySupine"))then
@@ -177,7 +177,7 @@ TppPlayer2CallbackScript={
     for key, value in pairs(NCAESettings) do
       if (StringId.IsEqual(fileSetName, key)) then
 
-        if not value then
+        if (TppMission.IsFOBMission(vars.missionCode) and fileSetName=="CqcSnatchAssaultRight" or fileSetName=="CqcSnatchAssaultLeft") or not value then
           local startFrame=unkP2-unkP1
           local recoverPreOrientation=_recoverPreOrientation
           if(fileSetName=="CqcSnatchAssaultRight"or fileSetName=="CqcSnatchAssaultLeft")then
