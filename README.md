@@ -1,13 +1,12 @@
-# Nuke Camera Animations and Effects
-Takes care of the annoying camera highjacking and ugly camera effects during certain events, while you could much better use that time to look around to consider your next move.
+# Zeta - Camera Animations and Effects
+Zeta makes it easy to customize the mod to your liking with the ingame menu. Toggle any animation you like/dislike on or off. Or even edit the way certain effects like shake and focus behave.
 
-One of the events was horse mounting for example. It locks your camera for 2 to 3 seconds to a weird and useless angle and zoom level. It also made moving the horse during that time unpredictable and just made up for bad situations altogether. The removed result is the following vid;
-[![Showcase horse mount event with the mod](https://img.youtube.com/vi/jz8UZtkQTgk/0.jpg)](https://www.youtube.com/watch?v=jz8UZtkQTgk)
+[![Showcase horse mount event with the mod](https://img.youtube.com/vi/prGN4RzFvNs/0.jpg)](https://youtu.be/prGN4RzFvNs)
 
-In total, 98 camera animations, 3 visual effects and 1 sound effect have been nuked.
+In total, 98 camera animations, 3 visual effects and 1 sound effect can be toggled.
 
 <details> 
-  <summary> General nuke list </summary>
+  <summary> General list </summary>
   
 - `Camera effects` blur, noise during the animations below.
 - `Camera sound effect` during animations below.
@@ -23,11 +22,11 @@ In total, 98 camera animations, 3 visual effects and 1 sound effect have been nu
 
 
 <details> 
-  <summary> Full nuke list </summary>
+  <summary> Full list </summary>
 
-- `cameraEffects` removes effects like blur and noise during the animations below
-- `cameraSoundEffect` CQC combo finish and Disarm dramatic sound effects.
-- `cameraSlowMotion` removes the slow motion camera during the animations below
+- `Camera Shake` behavior can be edited
+- `Camera Focus` behavior can be edited
+- `Camera Slow Motion` behavior can be edited
 - `CqcStandThrowFront`
 - `CqcStandThrowRight`
 - `CqcStandThrowBack`
@@ -131,12 +130,7 @@ In total, 98 camera animations, 3 visual effects and 1 sound effect have been nu
 </details>
 
 ## INSTALLATION
-[Snakebite](https://www.nexusmods.com/metalgearsolidvtpp/mods/106) is required to install the `.MGSV` file. Place the optional `NCAESettings.lua` file in the game directory where the .exe is. This way you can customize the mod to your liking. You can open the file with notepad. When you save the file the settings are automatically updated ingame, no restart required. Without the file the mod will nuke all by default.
+[Snakebite](https://www.nexusmods.com/metalgearsolidvtpp/mods/106) is required to install the `.MGSV` file. You also need [Zeta](https://www.nexusmods.com/metalgearsolidvtpp/mods/1309) version r18 or newer. Follow Zeta's instructions carefully.
 
-## COMPATIBILITY
-The mod should be pretty compatible across the board. The only file that i modify is:
-```	
-/Assets/tpp/level_asset/chara/player/game_object/TppPlayer2CallbackScript.lua
-```
 ## LINKS
-[Nexusmods](https://www.nexusmods.com/metalgearsolidvtpp/mods/1575/) | [BuyMeACoffee](https://www.buymeacoffee.com/grapjas93)
+[Nexusmods](https://www.nexusmods.com/metalgearsolidvtpp/mods/1697) | [BuyMeACoffee](https://www.buymeacoffee.com/grapjas93)
