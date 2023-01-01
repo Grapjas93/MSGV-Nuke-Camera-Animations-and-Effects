@@ -1,7 +1,7 @@
 --NCAE.Lua
 local this={
 	modName = "Camera Animations and Effects",
-	modDesc = "module to enable/disable camera animations and/or effects.",
+	modDesc = "module to enable/disable camera animations and/or effects. NOTE: THE GAME WILL BE UNRESPONSIVE FOR A WHILE WHEN YOU CHOOSE 'RESET CURRENT MENU'",
 	modCategory = {"Gameplay", "Camera" },
 	modAuthor = "Grapjasss",
 }
@@ -13,7 +13,7 @@ function this.ModMenu()
             {
               var="CameraEffectShake",
               name="Camera Shake",
-              desc="Affects the camera focus effect during curing gunshot wounds for example. THE GAME WILL BE UNRESPONSIVE FOR A WHILE WHEN YOU CHOOSE 'RESET CURRENT MENU'",
+              desc="Affects the camera focus effect during curing gunshot wounds for example.",
               default=0,
             },
             {
