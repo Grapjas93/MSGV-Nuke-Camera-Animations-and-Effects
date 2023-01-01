@@ -11,9 +11,15 @@ function this.ModMenu()
           {
           options={
             {
+              var="CqcSoundEffect",
+              name="Sound Effect CQC",
+              desc="toggle CQC disarm and combo finished sounds fx.",
+              default=0,
+            },
+            {
               var="CameraEffectShake",
               name="Camera Shake",
-              desc="Affects the camera focus effect during curing gunshot wounds for example.",
+              desc="Affects the camera shake effect when you get fall damage for example.",
               default=0,
             },
             {
@@ -181,13 +187,13 @@ function this.ModMenu()
             {
               var="CqcSnatchAssaultLeft",
               name="CqcSnatchAssaultLeft",
-              desc="CqcSnatchAssaultLeft",
+              desc="will be reverted to vanilla during FOB",
               default=0,
             },
             {
               var="CqcSnatchAssaultRight",
               name="CqcSnatchAssaultRight",
-              desc="CqcSnatchAssaultRight",
+              desc="will be reverted to vanilla during FOB",
               default=0,
             },
             {
@@ -672,6 +678,20 @@ end
 function this.TppPlayer2CallbackScript(callBackScript)
 
   local optionVariables=this.ModMenu()[1].options
+
+  SetHighSpeeCameraOnCQCComboFinish=function()
+    if this.ZVar("CqcSoundEffect") >= 1 then
+      TppSoundDaemon.PostEvent"sfx_s_highspeed_cqc"
+    end
+    TppPlayer2CallbackScript._SetHighSpeedCamera(.6,.03)
+  end
+
+  SetHighSpeeCameraAtCQCSnatchWeapon=function()
+    if this.ZVar("CqcSoundEffect") >= 1 then
+      TppSoundDaemon.PostEvent"sfx_s_highspeed_cqc"
+    end
+    TppPlayer2CallbackScript._SetHighSpeedCamera(1,.1)
+  end
 
   callBackScript._StartCameraAnimation=
   function(unkP1,unkP2,fileSet,_recoverPreOrientation,ignoreCollisionCheckOnStart,unkP6,isRiding,unkP7)
