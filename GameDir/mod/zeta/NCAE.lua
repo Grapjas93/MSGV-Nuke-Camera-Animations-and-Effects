@@ -13,19 +13,21 @@ function this.ModMenu()
             {
               var="CameraEffectShake",
               name="Camera Shake",
-              desc="Affects the camera focus effect during curing gunshot wounds for example.",
+              desc="Affects the camera focus effect during curing gunshot wounds for example. THE GAME WILL BE UNRESPONSIVE FOR A WHILE WHEN YOU CHOOSE 'RESET CURRENT MENU'",
               default=0,
             },
             {
               var="CameraEffectShakeLevel",
               name="Camera Shake Level Multiplier",
               desc="Intensity of the Shake effect",
+              default=1,
               number={min=0,max=10,inc=0.01},
             },
             {
               var="CameraEffectShakeDecayRate",
               name="Camera Shake Decay Rate Multiplier",
               desc="Controls how fast the effect decays",
+              default=1,
               number={min=0,max=10,inc=0.01},
             },
             {
@@ -38,31 +40,33 @@ function this.ModMenu()
               var="CameraEffectFocusAperture",
               name="Camera Focus Aperture Multiplier",
               desc="Aperture provides two main functions. One is to control exposure. The other is to adjust the depth of field and the image sharpness. A large aperture reduces the depth of field, adding softness to the background. Default = 1",
+              default=1,
               number={min=0,max=10,inc=0.01},
             },
             {
               var="CameraEffectFocusDistance",
               name="Camera Focus Distance Multiplier",
               desc="Focus distance. Default = 1",
-              number={min=0,max=10,inc=0.01},
-            },
-            {
-              var="SlowMotion",
-              name="Slow Motion",
-              desc="Slow motion effect",
-              default=0,
-            },
-            {
-              var="SlowMotionDuration",
-              name="Slow Motion Duration Multiplier",
-              desc="Duration of the slowmotion effects. Default = 1",
               default=1,
               number={min=0,max=10,inc=0.01},
             },
             {
-              var="SlowMotionSpeed",
-              name="Slow Motion Speed Multiplier",
-              desc="Sense of speed during slowmotion. Lower values means a stronger effect. Default = 1",
+              var="CameraSlowMotion",
+              name="Camera Slow Motion",
+              desc="Slow motion effect",
+              default=0,
+            },
+            {
+              var="CameraSlowMotionDuration",
+              name="Camera Slow Motion Duration Multiplier",
+              desc="Duration of the slow motion effects. Default = 1",
+              default=1,
+              number={min=0,max=10,inc=0.01},
+            },
+            {
+              var="CameraSlowMotionSpeed",
+              name="Camera Slow Motion Speed Multiplier",
+              desc="Sense of speed during slow motion. Lower values means a stronger effect. Default = 1",
               default=1,
               number={min=0,max=10,inc=0.01},
             },
@@ -738,11 +742,11 @@ function this.TppPlayer2CallbackScript(callBackScript)
         timeRateInterpTimeAtEnd=0,
         cameraSetUpTime=0
       }
-    elseif this.ZVar("SlowMotion") >= 1 then
+    elseif this.ZVar("CameraSlowMotion") >= 1 then
       HighSpeedCamera.RequestEvent{
-        continueTime=decayRate*this.ZVar("SlowMotionDuration"),
-        worldTimeRate=timeRate*this.ZVar("SlowMotionSpeed"),
-        localPlayerTimeRate=timeRate*this.ZVar("SlowMotionSpeed"),
+        continueTime=decayRate*this.ZVar("CameraSlowMotionDuration"),
+        worldTimeRate=timeRate*this.ZVar("CameraSlowMotionSpeed"),
+        localPlayerTimeRate=timeRate*this.ZVar("CameraSlowMotionSpeed"),
         timeRateInterpTimeAtStart=0,
         timeRateInterpTimeAtEnd=0,
         cameraSetUpTime=0
