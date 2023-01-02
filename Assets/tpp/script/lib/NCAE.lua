@@ -2,12 +2,22 @@ local this={}
 
 local fallbackNCAESettings={ -- mod default settings to fallback to if there are issues loading the custom file
 	showLogs=false,
-	nuke_cameraEffects=true,
+
 	nuke_cameraSoundEffect=true,
 
+	nuke_cameraEffectShake=true,
+	ShakeIntensityMultiplier=1,
+	ShakeDurationMultiplier=1,
+	ShakeDecayRateMultiplier=1,
+
+	nuke_CameraEffectFocus=true,
+	FocusApertureMultiplier=1,
+	FocusFocusDistanceMultiplier=1,
+
 	nuke_cameraSlowMotion=true,
-	cameraSlowMotionTimeMultiplier=1,
-	cameraSlowMotionSpeedMultiplier=1,
+	SlowMotionDurationMultiplier=1,
+	playerSlowMotionSpeedMultiplier=1,
+	worldSlowMotionSpeedMultiplier=1,
 
 	CqcStandThrowFront=true,
 	CqcStandThrowRight=true,

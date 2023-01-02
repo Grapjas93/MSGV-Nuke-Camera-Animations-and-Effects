@@ -144,15 +144,12 @@ TppPlayer2CallbackScript={
 
     for key, value in pairs(NCAESettings) do
       if (StringId.IsEqual(fileSet, key)) then
-
+        local startFrame=(unkP2-unkP1)+unkP6
+        local recoverPreOrientation=_recoverPreOrientation
+        if(StringId.IsEqual(fileSet,"CureGunShotWoundBodyLeft") or StringId.IsEqual(fileSet,"CureGunShotWoundBodyRight") or StringId.IsEqual(fileSet,"CureGunShotWoundBodyCrawl") or StringId.IsEqual(fileSet,"CureGunShotWoundBodySupine") and not NCAESettings.nuke_CameraEffectFocus)then
+          Player.SetFocusParamForCameraAnimation{aperture=3*NCAESettings.FocusApertureMultiplier,focusDistance=.6*NCAESettings.FocusFocusDistanceMultiplier}
+        end
         if (TppMission.IsFOBMission(vars.missionCode) and StringId.IsEqual(fileSet,"CqcSnatchAssaultLeft") or StringId.IsEqual(fileSet,"CqcSnatchAssaultRight")) or not value then
-          local startFrame=(unkP2-unkP1)+unkP6
-          local recoverPreOrientation=_recoverPreOrientation
-          if(((StringId.IsEqual(fileSet,"CureGunShotWoundBodyLeft")or StringId.IsEqual(fileSet,"CureGunShotWoundBodyRight"))or StringId.IsEqual(fileSet,"CureGunShotWoundBodyCrawl"))or StringId.IsEqual(fileSet,"CureGunShotWoundBodySupine"))then
-            if not NCAESettings.nuke_cameraEffects then -- NCAE
-              Player.SetFocusParamForCameraAnimation{aperture=3,focusDistance=.6}
-            end
-          end
           Player.RequestToPlayCameraAnimation{
             fileSet=fileSet,
             startFrame=startFrame,
@@ -176,15 +173,12 @@ TppPlayer2CallbackScript={
 
     for key, value in pairs(NCAESettings) do
       if (StringId.IsEqual(fileSetName, key)) then
-
+        local startFrame=unkP2-unkP1
+        local recoverPreOrientation=_recoverPreOrientation
+        if(fileSetName=="CqcSnatchAssaultRight" or fileSetName=="CqcSnatchAssaultLeft" and not NCAESettings.nuke_CameraEffectFocus)then
+          Player.SetFocusParamForCameraAnimation{aperture=20*NCAESettings.FocusApertureMultiplier}
+        end
         if (TppMission.IsFOBMission(vars.missionCode) and fileSetName=="CqcSnatchAssaultRight" or fileSetName=="CqcSnatchAssaultLeft") or not value then
-          local startFrame=unkP2-unkP1
-          local recoverPreOrientation=_recoverPreOrientation
-          if(fileSetName=="CqcSnatchAssaultRight"or fileSetName=="CqcSnatchAssaultLeft")then
-            if not NCAESettings.nuke_cameraEffects then -- NCAE
-              Player.SetFocusParamForCameraAnimation{aperture=20}
-            end
-          end
           Player.RequestToPlayCameraAnimation{
             fileSetName=fileSetName,
             startFrame=startFrame,
@@ -205,8 +199,8 @@ TppPlayer2CallbackScript={
     local _levelY=levelY
     local _time=time
     local decayRate=.15
-    if not NCAESettings.nuke_cameraEffects then -- NCAE
-      Player.RequestToSetCameraNoise{levelX=_levelX,levelY=_levelY,time=_time,decayRate=decayRate}
+    if not NCAESettings.nuke_cameraEffectShake then -- NCAE
+      Player.RequestToSetCameraNoise{levelX=_levelX*NCAESettings.ShakeIntensityMultiplier,levelY=_levelY*NCAESettings.ShakeIntensityMultiplier,time=_time*NCAESettings.ShakeDurationMultiplier,decayRate=decayRate*NCAESettings.ShakeDecayRateMultiplier}
     end
   end,
   _SetHighSpeedCamera=function(decayRate,timeRate)
@@ -229,9 +223,9 @@ TppPlayer2CallbackScript={
         TppUiCommand.AnnounceLogView("NCAE: Settings adjusted for singleplayer.")
       end
       HighSpeedCamera.RequestEvent{
-        continueTime=decayRate*NCAESettings.cameraSlowMotionTimeMultiplier,
-        worldTimeRate=timeRate*NCAESettings.cameraSlowMotionSpeedMultiplier,
-        localPlayerTimeRate=timeRate*NCAESettings.cameraSlowMotionSpeedMultiplier,
+        continueTime=decayRate*NCAESettings.SlowMotionDurationMultiplier,
+        worldTimeRate=timeRate*NCAESettings.worldSlowMotionSpeedMultiplier,
+        localPlayerTimeRate=timeRate*NCAESettings.playerSlowMotionSpeedMultiplier,
         timeRateInterpTimeAtStart=0,
         timeRateInterpTimeAtEnd=0,
         cameraSetUpTime=0
