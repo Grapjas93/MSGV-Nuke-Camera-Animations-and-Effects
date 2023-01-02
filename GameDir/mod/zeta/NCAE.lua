@@ -14,9 +14,21 @@ function this.ModMenu()
       options=
       {
         {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
+          default=0,
+        },
+        {
           var="CqcSoundEffect",
           name="Sound Effect CQC",
           desc="toggle CQC disarm and combo finished sounds fx.",
+          default=0,
+        },
+        {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
           default=0,
         },
         {
@@ -40,6 +52,12 @@ function this.ModMenu()
           number={min=0,max=100,inc=0.01},
         },
         {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
+          default=0,
+        },
+        {
           var="CameraEffectFocus",
           name="Camera Focus",
           desc="Affects the camera focus effect during curing gunshot wounds for example.",
@@ -58,6 +76,12 @@ function this.ModMenu()
           desc="Focus distance. Default = 1",
           default=1,
           number={min=0,max=100,inc=0.01},
+        },
+        {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
+          default=0,
         },
         {
           var="CameraSlowMotion",
@@ -85,6 +109,12 @@ function this.ModMenu()
           desc="Player sense of time during slow motion. You can also speed up time instead, if the multiplier is high enough. Affects horse and possibly other buddies too. Reverted to vanilla during FOB. Lower values means a stronger slow-mo effect. Default = 1",
           default=1,
           number={min=0,max=100,inc=0.01},
+        },
+        {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
+          default=0,
         },
         {
           var="CqcStandThrowFront",
@@ -183,6 +213,12 @@ function this.ModMenu()
           default=0,
         },
         {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
+          default=0,
+        },
+        {
           var="CqcLadderFront",
           name="CqcLadderFront",
           desc="CqcLadderFront",
@@ -192,6 +228,12 @@ function this.ModMenu()
           var="CqcLadderBack",
           name="CqcLadderBack",
           desc="CqcLadderBack",
+          default=0,
+        },
+        {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
           default=0,
         },
         {
@@ -210,6 +252,12 @@ function this.ModMenu()
           var="CqcComboFinishBack",
           name="CqcComboFinishBack",
           desc="CqcComboFinishBack",
+          default=0,
+        },
+        {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
           default=0,
         },
         {
@@ -291,6 +339,12 @@ function this.ModMenu()
           default=0,
         },
         {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
+          default=0,
+        },
+        {
           var="CureGunShotWoundBodyLeft",
           name="CureGunShotWoundBodyLeft",
           desc="CureGunShotWoundBodyLeft",
@@ -330,6 +384,12 @@ function this.ModMenu()
           var="CureFootDislocation",
           name="CureFootDislocation",
           desc="CureFootDislocation",
+          default=0,
+        },
+        {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
           default=0,
         },
         {
@@ -399,6 +459,12 @@ function this.ModMenu()
           default=0,
         },
         {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
+          default=0,
+        },
+        {
           var="RideOnWalkerGear",
           name="RideOnWalkerGear",
           desc="RideOnWalkerGear",
@@ -420,6 +486,12 @@ function this.ModMenu()
           var="WalkerGearCQCSquat",
           name="WalkerGearCQCSquat",
           desc="WalkerGearCQCSquat",
+          default=0,
+        },
+        {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
           default=0,
         },
         {
@@ -531,6 +603,12 @@ function this.ModMenu()
           default=0,
         },
         {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
+          default=0,
+        },
+        {
           var="RideOnHelicopter",
           name="RideOnHelicopter",
           desc="RideOnHelicopter",
@@ -564,6 +642,12 @@ function this.ModMenu()
           var="MissionStartOnHeli3",
           name="MissionStartOnHeli3",
           desc="MissionStartOnHeli3",
+          default=0,
+        },
+        {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
           default=0,
         },
         {
@@ -639,9 +723,21 @@ function this.ModMenu()
           default=0,
         },
         {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
+          default=0,
+        },
+        {
           var="StartCliffClimb",
           name="StartCliffClimb",
           desc="StartCliffClimb",
+          default=0,
+        },
+        {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
           default=0,
         },
         {
@@ -669,6 +765,12 @@ function this.ModMenu()
           default=0,
         },
         {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
+          default=0,
+        },
+        {
           var="PazPhantomPainPassPhotos",
           name="PazPhantomPainPassPhotos",
           desc="PazPhantomPainPassPhotos",
@@ -678,6 +780,12 @@ function this.ModMenu()
           var="PazPhantomPainPickUpBook",
           name="PazPhantomPainPickUpBook",
           desc="PazPhantomPainPickUpBook",
+          default=0,
+        },
+        {
+          var="Seperator",
+          name="----------------------------------------------------------------------",
+          desc="serves as a text seperator, does nothing",
           default=0,
         },
       }
