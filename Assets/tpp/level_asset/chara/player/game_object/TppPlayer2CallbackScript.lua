@@ -97,25 +97,31 @@ TppPlayer2CallbackScript={
     TppPlayer2CallbackScript._SetCameraNoise(.5,.5,.4)
   end,
   SetCameraNoiseEndCarry=function(unkP1,unkP2,unkP3,unkP4,unkP5,level,time,unkP8,fileSet,unkP10,unkP11)
-    local levelX=.25
-    local levelY=.25
-    local time=.15
-    local decayRate=.05
-    Player.RequestToSetCameraNoise{levelX=levelX,levelY=levelY,time=time,decayRate=decayRate}
+    if not NCAESettings.nuke_cameraEffectShake then
+      local levelX=.25*NCAESettings.ShakeIntensityMultiplier
+      local levelY=.25*NCAESettings.ShakeIntensityMultiplier
+      local time=.15*NCAESettings.ShakeDurationMultiplier
+      local decayRate=.05*NCAESettings.ShakeDecayRateMultiplier
+      Player.RequestToSetCameraNoise{levelX=levelX,levelY=levelY,time=time,decayRate=decayRate}
+    end
   end,
   SetCameraNoiseOnMissileFire=function(unkP1,unkP2,unkP3,unkP4,unkP5,level,time,unkP8,fileSet,unkP10,unkP11)
-    local levelX=.5
-    local levelY=.5
-    local time=.75
-    local decayRate=.08
-    Player.RequestToSetCameraNoise{levelX=levelX,levelY=levelY,time=time,decayRate=decayRate}
+    if not NCAESettings.nuke_cameraEffectShake then
+      local levelX=.5*NCAESettings.ShakeIntensityMultiplier
+      local levelY=.5*NCAESettings.ShakeIntensityMultiplier
+      local time=.75*NCAESettings.ShakeDurationMultiplier
+      local decayRate=.08*NCAESettings.ShakeDecayRateMultiplier
+      Player.RequestToSetCameraNoise{levelX=levelX,levelY=levelY,time=time,decayRate=decayRate}
+    end
   end,
   SetCameraNoiseOnRideOnAntiAircraftGun=function(unkP1,unkP2,unkP3,unkP4,unkP5,level,time,unkP8,fileSet,unkP10,unkP11)
-    local levelX=.2
-    local levelY=.2
-    local time=.3
-    local decayRate=.08
-    Player.RequestToSetCameraNoise{levelX=levelX,levelY=levelY,time=time,decayRate=decayRate}
+    if not NCAESettings.nuke_cameraEffectShake then
+      local levelX=.2*NCAESettings.ShakeIntensityMultiplier
+      local levelY=.2*NCAESettings.ShakeIntensityMultiplier
+      local time=.3*NCAESettings.ShakeDurationMultiplier
+      local decayRate=.08*NCAESettings.ShakeDecayRateMultiplier
+      Player.RequestToSetCameraNoise{levelX=levelX,levelY=levelY,time=time,decayRate=decayRate}
+    end
   end,
   SetNonAnimationCutInCameraFallDeath=function()
   end,
@@ -195,11 +201,11 @@ TppPlayer2CallbackScript={
     end
   end,
   _SetCameraNoise=function(levelX,levelY,time)
-    local _levelX=levelX
-    local _levelY=levelY
-    local _time=time
-    local decayRate=.15
-    if not NCAESettings.nuke_cameraEffectShake then -- NCAE
+    if not NCAESettings.nuke_cameraEffectShake then
+      local _levelX=levelX
+      local _levelY=levelY
+      local _time=time
+      local decayRate=.15
       Player.RequestToSetCameraNoise{levelX=_levelX*NCAESettings.ShakeIntensityMultiplier,levelY=_levelY*NCAESettings.ShakeIntensityMultiplier,time=_time*NCAESettings.ShakeDurationMultiplier,decayRate=decayRate*NCAESettings.ShakeDecayRateMultiplier}
     end
   end,
