@@ -131,7 +131,8 @@ In total, 98 camera animations, 3 visual effects and 1 sound effect have been nu
 </details>
 
 ## INSTALLATION
-[Snakebite](https://www.nexusmods.com/metalgearsolidvtpp/mods/106) is required to install the `.MGSV` file. Place the optional `NCAESettings.lua` file in the game directory where the .exe is. This way you can customize the mod to your liking. You can open the file with notepad. When you save the file the settings are automatically updated ingame, no restart required. Without the file the mod will nuke all by default.
+[Snakebite](https://www.nexusmods.com/metalgearsolidvtpp/mods/106) is required to install the `.MGSV` file. Place the optional [NCAESettings.lua](https://github.com/Grapjas93/MSGV-Nuke-Camera-Animations-and-Effects/files/10336605/NCAESettings.zip)
+file in the game directory where the .exe is. This way you can customize the mod to your liking. You can open the file with notepad. When you save the file the settings are automatically updated ingame, no restart required. Without the file the mod will nuke all by default.
 
 ## COMPATIBILITY
 The mod should be pretty compatible across the board. The only file that i modify is:
