@@ -854,7 +854,6 @@ function this.TppPlayer2CallbackScript(callBackScript)
 
   callBackScript._StartCameraAnimation=
   function(unkP1,unkP2,fileSet,_recoverPreOrientation,ignoreCollisionCheckOnStart,unkP6,isRiding,unkP7)
-    callBackScript._SetCameraNoise(0.1, 0.1, 0.1, 0.1)
     for key, value in pairs(optionVariables) do
       if (StringId.IsEqual(fileSet, value.var)) then
         -- TppUiCommand.AnnounceLogView("option: "..tostring(key)..", var: "..tostring(value.var)..", value: "..tostring(this.ZVar(value.var))) -- log option + variable + value. log message qeueue seems to be capped at 100(?)
