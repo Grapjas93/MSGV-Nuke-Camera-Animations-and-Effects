@@ -45,6 +45,13 @@ function this.ModMenu()
           number={min=0,max=100,inc=0.01},
         },
         {
+          var="CameraEffectShakeDuration",
+          name="Camera Shake Duration Multiplier",
+          desc="Duration of the Shake effect. Default = 1",
+          default=1,
+          number={min=0,max=100,inc=0.01},
+        },
+        {
           var="CameraEffectShakeDecayRate",
           name="Camera Shake Decay Rate Multiplier",
           desc="Controls how fast the effect decays. Default = 1",
@@ -797,22 +804,57 @@ function this.TppPlayer2CallbackScript(callBackScript)
 
   local optionVariables=this.ModMenu()[1].options
 
-  SetHighSpeeCameraOnCQCComboFinish=function()
+  SetCameraNoiseEndCarry=
+  function(unkP1,unkP2,unkP3,unkP4,unkP5,level,time,unkP8,fileSet,unkP10,unkP11)
+    if this.ZVar("CameraEffectShake") >= 1 then
+      local levelX=.25*this.ZVar("CameraEffectShakeLevel")
+      local levelY=.25*this.ZVar("CameraEffectShakeLevel")
+      local time=.15*this.ZVar("CameraEffectShakeDuration")
+      local decayRate=.05*this.ZVar("CameraEffectShakeDecayRate")
+      Player.RequestToSetCameraNoise{levelX=levelX,levelY=levelY,time=time,decayRate=decayRate}
+    end
+  end
+
+  SetCameraNoiseOnMissileFire=
+  function(unkP1,unkP2,unkP3,unkP4,unkP5,level,time,unkP8,fileSet,unkP10,unkP11)
+    if this.ZVar("CameraEffectShake") >= 1 then
+      local levelX=.5*this.ZVar("CameraEffectShakeLevel")
+      local levelY=.5*this.ZVar("CameraEffectShakeLevel")
+      local time=.75*this.ZVar("CameraEffectShakeDuration")
+      local decayRate=.08*this.ZVar("CameraEffectShakeDecayRate")
+      Player.RequestToSetCameraNoise{levelX=levelX,levelY=levelY,time=time,decayRate=decayRate}
+    end
+  end
+
+  SetCameraNoiseOnRideOnAntiAircraftGun=
+  function(unkP1,unkP2,unkP3,unkP4,unkP5,level,time,unkP8,fileSet,unkP10,unkP11)
+    if this.ZVar("CameraEffectShake") >= 1 then
+      local levelX=.2*this.ZVar("CameraEffectShakeLevel")
+      local levelY=.2*this.ZVar("CameraEffectShakeLevel")
+      local time=.3*this.ZVar("CameraEffectShakeDuration")
+      local decayRate=.08*this.ZVar("CameraEffectShakeDecayRate")
+      Player.RequestToSetCameraNoise{levelX=levelX,levelY=levelY,time=time,decayRate=decayRate}
+    end
+  end
+
+  SetHighSpeeCameraOnCQCComboFinish=
+  function()
     if this.ZVar("CqcSoundEffect") >= 1 then
       TppSoundDaemon.PostEvent"sfx_s_highspeed_cqc"
     end
-    TppPlayer2CallbackScript._SetHighSpeedCamera(.6,.03)
+    callBackScript._SetHighSpeedCamera(.6,.03)
   end
 
   SetHighSpeeCameraAtCQCSnatchWeapon=function()
     if this.ZVar("CqcSoundEffect") >= 1 then
       TppSoundDaemon.PostEvent"sfx_s_highspeed_cqc"
     end
-    TppPlayer2CallbackScript._SetHighSpeedCamera(1,.1)
+    callBackScript._SetHighSpeedCamera(1,.1)
   end
 
   callBackScript._StartCameraAnimation=
   function(unkP1,unkP2,fileSet,_recoverPreOrientation,ignoreCollisionCheckOnStart,unkP6,isRiding,unkP7)
+    callBackScript._SetCameraNoise(0.1, 0.1, 0.1, 0.1)
     for key, value in pairs(optionVariables) do
       if (StringId.IsEqual(fileSet, value.var)) then
         -- TppUiCommand.AnnounceLogView("option: "..tostring(key)..", var: "..tostring(value.var)..", value: "..tostring(this.ZVar(value.var))) -- log option + variable + value. log message qeueue seems to be capped at 100(?)
@@ -889,13 +931,13 @@ function this.TppPlayer2CallbackScript(callBackScript)
   end
 
   callBackScript._SetCameraNoise=
-  function(levelX,levelY,time)
+  function(levelX,levelY,time,decay)
       local _levelX=levelX
       local _levelY=levelY
       local _time=time
       local decayRate=.15
       if this.ZVar("CameraEffectShake") >= 1 then
-        Player.RequestToSetCameraNoise{levelX=_levelX*this.ZVar("CameraEffectShakeLevel"),levelY=_levelY*this.ZVar("CameraEffectShakeLevel"),time=_time,decayRate=decayRate*this.ZVar("CameraEffectShakeDecayRate")}
+        Player.RequestToSetCameraNoise{levelX=_levelX*this.ZVar("CameraEffectShakeLevel"),levelY=_levelY*this.ZVar("CameraEffectShakeLevel"),time=_time*this.ZVar("CameraEffectShakeDuration"),decayRate=decayRate*this.ZVar("CameraEffectShakeDecayRate")}
       end
   end
 
